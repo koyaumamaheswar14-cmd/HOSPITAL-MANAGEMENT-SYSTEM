@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HMS Portal</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: url('https://wallpapers.com/images/hd/hospital-background-8uzvaaj1wielv1ca.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 500px;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: none;
+    }
+
+    .form-container.active {
+      display: block;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ffffff;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 16px;
+    }
+
+    input::placeholder {
+      color: #ddd;
+    }
+
+    select option {
+      color: #000;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #0072ff, #00c6ff);
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .link a {
+      color: #00c6ff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    #message, #successMessage {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+      color: #00ffcc;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 30px;
+      }
+
+      .btn {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+
+    <!-- Login Form -->
+    <div class="form-container active" id="loginContainer">
+      <h2>LOGIN TO HMS</h2>
+      <form id="loginForm">
+        <label for="loginUsername">Username</label>
+        <input type="text" id="loginUsername" placeholder="Enter username" required>
+
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter password" required>
+
+        <button type="submit" class="btn">Login</button>
+      </form>
+
+      <div class="link">
+        <p>Don't have an account? <a onclick="toggleForm('signup')">Sign Up</a></p>
+      </div>
+
+      <div id="message"></div>
+    </div>
+
+    <!-- Sign-Up Form -->
+    <div class="form-container" id="signupContainer">
+      <h2>Create an Account</h2>
+      <form id="signupForm">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" placeholder="Your full name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Your email" required>
+
+        <label for="signupUsername">Username</label>
+        <input type="text" id="signupUsername" placeholder="Choose a username" required>
+
+        <label for="signupPassword">Password</label>
+        <input type="password" id="signupPassword" placeholder="Create a password" required>
+
+        <label for="role">Role</label>
+        <select id="role" required>
+          <option value="">Select role</option>
+          <option value="doctor">Doctor</option>
+          <option value="patient">Patient</option>
+        </select>
+
+        <button type="submit" class="btn">Sign Up</button>
+      </form>
+
+      <div class="link">
+        <p>Already have an account? <a onclick="toggleForm('login')">Login</a></p>
+      </div>
+
+      <div id="successMessage">✅ Sign-up successful! Redirecting to login...</div>
+    </div>
+  </div>
+
+  <script>
+    const loginContainer = document.getElementById("loginContainer");
+    const signupContainer = document.getElementById("signupContainer");
+    const messageBox = document.getElementById("message");
+    const successMessage = document.getElementById("successMessage");
+
+    function toggleForm(form) {
+      if (form === "signup") {
+        loginContainer.classList.remove("active");
+        signupContainer.classList.add("active");
+        messageBox.style.display = "none";
+      } else {
+        signupContainer.classList.remove("active");
+        loginContainer.classList.add("active");
+        successMessage.style.display = "none";
+      }
+    }
+
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const user = {
+        fullname: document.getElementById("fullname").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        username: document.getElementById("signupUsername").value.trim(),
+        password: document.getElementById("signupPassword").value.trim(),
+        role: document.getElementById("role").value
+      };
+      localStorage.setItem("hmsUser", JSON.stringify(user));
+      successMessage.style.display = "block";
+      setTimeout(() => {
+        toggleForm("login");
+      }, 2000);
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const usernameInput = document.getElementById("loginUsername").value.trim();
+      const passwordInput = document.getElementById("loginPassword").value.trim();
+      const storedUser = JSON.parse(localStorage.getItem("hmsUser"));
+
+      if (storedUser && usernameInput === storedUser.username && passwordInput === storedUser.password) {
+        messageBox.style.color = "#00ff99";
+        messageBox.textContent = "Login successful! Redirecting...";
+        messageBox.style.display = "block";
+        setTimeout(() => {
+          if (storedUser.role === "doctor") {
+            window.location.href = "page2.html";
+          } else if (storedUser.role === "patient") {
+            window.location.href = "page3.html";
+          } else {
+            messageBox.textContent = "Unknown role. Please contact support.";
+          }
+        }, 1500);
+      } else {
+        messageBox.style.color = "#ff9999";
+        messageBox.innerHTML = `
+          Invalid credentials.<br>
+          <span style="color:#00c6ff; text-decoration:underline; cursor:pointer;" onclick="toggleForm('signup')">Click here to sign up</span> if you don't have an account.
+        `;
+        messageBox.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
