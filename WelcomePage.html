@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HMS - Hospital Management System</title>
+  <style>
+    /* Reset default spacing and layout */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Background image setup */
+    body {
+      background: url('https://static.vecteezy.com/system/resources/thumbnails/036/372/442/small_2x/hospital-building-with-ambulance-emergency-car-on-cityscape-background-cartoon-illustration-vector.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* Dark transparent overlay with blur effect */
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      backdrop-filter: blur(5px);
+    }
+
+    /* Hospital logo */
+    .logo {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 20px;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    /* Floating animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* 360° rotation animation */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .rotate-logo {
+      animation: spin 3s linear infinite;
+    }
+
+    /* Title styles */
+    h1 {
+      font-size: 60px;
+      color: #708090;
+      text-shadow: 2px 2px 8px black;
+      margin-bottom: 10px;
+    }
+
+    /* Welcome paragraph */
+    p {
+      font-size: 22px;
+      color: #fff;
+      margin-bottom: 40px;
+      max-width: 700px;
+    }
+
+    /* Button group */
+    .btn-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Button styles */
+    .btn {
+      padding: 14px 35px;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #0072ff, #00c6ff);
+    }
+
+    /* Responsive for mobile */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 40px;
+      }
+
+      p {
+        font-size: 18px;
+      }
+
+      .btn {
+        padding: 12px 25px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <!-- Rotating hospital logo -->
+    <img src="https://vivekanandha.hospital/wp-content/uploads/2016/09/24x7.png" alt="Logo" class="logo rotate-logo" />
+    
+    <h1>WELCOME</h1>
+    <h1>TO</h1>
+    <h1>HOSPITAL MANAGEMENT SYSTEM</h1>
+
+    <div class="btn-group">
+      <a href="page1.html" class="btn">Login</a>
+            <a href="page1.html" class="btn">Signup</a>
+</body>
+</html>
