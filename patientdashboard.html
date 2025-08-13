@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HMS Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: url('https://wallpapers.com/images/hd/hospital-background-8uzvaaj1wielv1ca.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.7); /* Solid dark overlay */
+      min-height: 100vh;
+      width: 100%;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .dashboard-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      width: 100%;
+      max-width: 1200px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      color: #fff;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    .logout-btn {
+      padding: 10px 20px;
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 25px;
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+      color: #fff;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #ddd;
+      margin-bottom: 15px;
+    }
+
+    .card button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .card button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #0072ff, #00c6ff);
+    }
+
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 18px;
+      }
+
+      .logout-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="dashboard-container">
+      <div class="header">
+        <h1>🏥 HMS Dashboard</h1>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
+
+      <div class="dashboard">
+        <div class="card">
+          <h3>📅 Book Appointment</h3>
+          <p>Schedule a new appointment with a doctor.</p>
+          <button onclick="alert('Redirecting to booking form...')">Book Now</button>
+        </div>
+
+        <div class="card">
+          <h3>🔍 Track Appointment</h3>
+          <p>Check status of upcoming or past appointments.</p>
+          <button onclick="alert('Fetching appointment status...')">Track</button>
+        </div>
+
+        <div class="card">
+          <h3>📄 Reports</h3>
+          <p>View medical test results and diagnosis reports.</p>
+          <button onclick="alert('Opening reports...')">View Reports</button>
+        </div>
+
+        <div class="card">
+          <h3>💳 Payments</h3>
+          <p>Pay hospital fees or appointment charges.</p>
+          <button onclick="showPaymentOptions()">Pay Now</button>
+        </div>
+
+        <div class="card">
+          <h3>🧑‍⚕️ Doctor Profile</h3>
+          <p>View doctor details, specialization, and availability.</p>
+          <button onclick="alert('Loading doctor profiles...')">View Doctors</button>
+        </div>
+
+        <div class="card">
+          <h3>🧑‍💼 Patient Profile</h3>
+          <p>Manage your personal health records and info.</p>
+          <button onclick="alert('Opening patient profile...')">View Profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function logout() {
+      localStorage.removeItem("hmsUser");
+      window.location.href = "index.html";
+    }
+
+    function showPaymentOptions() {
+      const fee = 500;
+      const dischargeFee = 1500;
+      const total = fee + dischargeFee;
+
+      alert(`Appointment Fee: ₹${fee}\nDischarge Fee: ₹${dischargeFee}\nTotal: ₹${total}\n\nChoose payment method:\n- UPI\n- Credit/Debit Card\n- Net Banking`);
+    }
+  </script>
+</body>
+</html>
