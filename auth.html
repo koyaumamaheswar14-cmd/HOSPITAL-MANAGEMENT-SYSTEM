@@ -235,9 +235,9 @@
         messageBox.style.display = "block";
         setTimeout(() => {
           if (storedUser.role === "doctor") {
-            window.location.href = "page2.html";
+            window.location.href = "doctordashboard.html";
           } else if (storedUser.role === "patient") {
-            window.location.href = "page3.html";
+            window.location.href = "patientdashboard.html";
           } else {
             messageBox.textContent = "Unknown role. Please contact support.";
           }
