@@ -23,13 +23,13 @@ public class SignupServlet extends HttpServlet {
 
             int rows = stmt.executeUpdate();
             if (rows > 0) {
-                response.sendRedirect("login.html?msg=SignupSuccess");
+                response.sendRedirect("auth.html?msg=SignupSuccess");
             } else {
-                response.sendRedirect("signup.html?msg=SignupFailed");
+                response.sendRedirect("auth.html?msg=SignupFailed");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("signup.html?msg=Error");
+            response.sendRedirect("auth.html?msg=Error");
         }
     }
 }
