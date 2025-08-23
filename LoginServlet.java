@@ -24,14 +24,14 @@ public class LoginServlet extends HttpServlet {
                 // ✅ details match signup entry
                 HttpSession session = request.getSession();
                 session.setAttribute("username", rs.getString("username"));
-                response.sendRedirect("dashboard.jsp");
+                response.sendRedirect("patientdashboard.jsp");
             } else {
                 // ❌ wrong details
-                response.sendRedirect("login.html?msg=InvalidCredentials");
+                response.sendRedirect("auth.html?msg=InvalidCredentials");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("login.html?msg=Error");
+            response.sendRedirect("auth.html?msg=Error");
         }
     }
 }
