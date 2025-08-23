@@ -1,0 +1,8 @@
+<servlet>
+    <servlet-name>UserDetailsServlet</servlet-name>
+    <servlet-class>com.hms.servlets.UserDetailsServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>UserDetailsServlet</servlet-name>
+    <url-pattern>/UserDetailsServlet</url-pattern>
+</servlet-mapping>
